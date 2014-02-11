@@ -31,6 +31,10 @@
 			<attribute name="owner.project.facets" value="jst.jaxrs"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Marcela Domingues/Downloads/twitter4j-core-2.1.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Marcela Domingues/Downloads/twitter4j-3.0.5/lib/twitter4j-async-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Marcela Domingues/Downloads/twitter4j-3.0.5/lib/twitter4j-core-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Marcela Domingues/Downloads/twitter4j-3.0.5/lib/twitter4j-examples-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Marcela Domingues/Downloads/twitter4j-3.0.5/lib/twitter4j-media-support-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Marcela Domingues/Downloads/twitter4j-3.0.5/lib/twitter4j-stream-3.0.5.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
