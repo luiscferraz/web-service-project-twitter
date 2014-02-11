@@ -96,7 +96,7 @@ public class TwitterTest  {
 	}
 	
 	public static void getPositiveMentions(Twitter twitter, String stringBusca){
-		//aqui seriam as palavras de busca negativa
+		//aqui seriam as palavras de busca positiva
 		String[] palavrasPositivas = {"bom","maravilha","ótimo","adorei","gostei","adoro","amo","boa"};
 		
 		ArrayList<String> listaTweetsPositivos = new ArrayList<String>();
@@ -104,8 +104,8 @@ public class TwitterTest  {
 		ArrayList<String> listaTweets = getTweets( getTwitter(),"@saraiva");
 		
 		for (String texto : listaTweets){
-			for (String palavraNeg : palavrasPositivas){
-				if (texto.contains(palavraNeg)){
+			for (String palavraPos : palavrasPositivas){
+				if (texto.contains(palavraPos)){
 					if (!listaTweetsPositivos.contains(texto)){
 						listaTweetsPositivos.add(texto);
 					 }
