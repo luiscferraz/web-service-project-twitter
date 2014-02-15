@@ -14,15 +14,19 @@ import twitter4j.auth.AccessToken;
 
 public class TwitterTest  {
 	
-	public static void main(String[] args) throws TwitterException {
-		//System.out.println("==========TIMELINE==========");
-		//printTimeline(getTwitter());
-		//System.out.println("==========BUSCA=============");
-		//getTweets(getTwitter(),"@vivo");
-		//System.out.println("==========BUSCA NEGATIVA=============");
-		//getNegativeMentions(getTwitter(),"@vivo");
-		System.out.println("==========BUSCA POSITIVA=============");
-		getPositiveMentions(getTwitter(),"@vivo");
+public static void main(String[] args) throws TwitterException {
+		
+		System.out.println("==========TIMELINE==========");
+		printTimeline(getTwitter());
+		
+		System.out.println("\n==========BUSCA GERAL=============");
+		printMentions(getTweets(getTwitter(), "@submarino"));
+		System.out.println("\n==========BUSCA NEGATIVA=============");
+		printMentions(getNegativeMentions(getTwitter(), "@submarino"));
+		System.out.println("\n==========BUSCA POSITIVA=============");		
+		printMentions(getPositiveMentions(getTwitter(), "@submarino"));
+		
+		
 	}
 	
 	
@@ -30,7 +34,6 @@ public class TwitterTest  {
 	    List<Status> statuses;
 		try {
 			statuses = twitter.getHomeTimeline();
-		    System.out.println("Showing home timeline.");
 		    for (Status status : statuses) {
 		        System.out.println(status.getUser().getName() + ": " +
 		                           status.getText());
@@ -71,53 +74,67 @@ public class TwitterTest  {
 	}	
 
 
-	public static void getNegativeMentions(Twitter twitter, String stringBusca){
+	public static ArrayList<String> getNegativeMentions(Twitter twitter, String stringBusca){
 		//aqui seriam as palavras de busca negativa
-		String[] palavrasNegativas = {"ruim","péssimo","horrível","não consigo","mal","não","odeio"};
+		String[] palavrasNegativas = {"ruim", "raiva", "péssimo","horrível","não consigo","mal","não","odeio", "merda","bosta","lixo","reclamar","demora"};
 		
-		ArrayList<String> listaTweetsNegativos = new ArrayList<String>();
-		
-		ArrayList<String> listaTweets = getTweets( getTwitter(),"@vivo");
+		ArrayList<String> listaTweetsNegativos = new ArrayList<String>();		
+		ArrayList<String> listaTweets = getTweets( getTwitter(),stringBusca);
 		
 		for (String texto : listaTweets){
 			for (String palavraNeg : palavrasNegativas){
 				if (texto.contains(palavraNeg)){
 					if (!listaTweetsNegativos.contains(texto)){
-						listaTweetsNegativos.add(texto);
+						listaTweetsNegativos.add(texto);						
 					 }
 					
 				}
 			}
 		}
-		System.out.println(listaTweetsNegativos);
+		//System.out.println(listaTweetsNegativos);
 		System.out.println("Menções Negativas:" + listaTweetsNegativos.size());
+		
+		return listaTweetsNegativos;
 		
 		
 	}
 	
-	public static void getPositiveMentions(Twitter twitter, String stringBusca){
+	
+	public static ArrayList<String> getPositiveMentions(Twitter twitter, String stringBusca){
 		//aqui seriam as palavras de busca positiva
-		String[] palavrasPositivas = {"bom","maravilha","ótimo","adorei","gostei","adoro","amo","boa"};
+		String[] palavrasPositivas = {"bom","maravilha","ótimo","adorei","gostei","adoro","amo","boa","ótima"};
 		
 		ArrayList<String> listaTweetsPositivos = new ArrayList<String>();
 		
-		ArrayList<String> listaTweets = getTweets( getTwitter(),"@saraiva");
+		ArrayList<String> listaTweets = getTweets( getTwitter(),stringBusca);
 		
 		for (String texto : listaTweets){
 			for (String palavraPos : palavrasPositivas){
 				if (texto.contains(palavraPos)){
 					if (!listaTweetsPositivos.contains(texto)){
 						listaTweetsPositivos.add(texto);
+						//System.out.println(texto);
 					 }
 					
 				}
 			}
 		}
-		System.out.println(listaTweetsPositivos);
+		//System.out.println(listaTweetsPositivos);
 		System.out.println("Menções Positivas:" + listaTweetsPositivos.size());
+		return listaTweetsPositivos;
 		
 		
 	}
 	
+	//Este método pode ser utilizado para imprimir todos os tipos de menção
+	public static void printMentions(ArrayList<String> mentions){
+		for(String mention : mentions){
+			System.out.println(mention);
+		}
+	}
 	
+	
+	
+	
+
 }
