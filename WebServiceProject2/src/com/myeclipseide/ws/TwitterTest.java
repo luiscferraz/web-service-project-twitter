@@ -63,7 +63,7 @@ public static void main(String[] args) throws TwitterException {
 		    QueryResult result = twitter.search(query);
 		    for (Status status : result.getTweets()) {
 		        //System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-		        tweets.add("@" + status.getUser().getScreenName() + ":" + status.getText());
+		        tweets.add("@" + status.getUser().getScreenName() + ":" + status.getText() + "\nLocalização do usuário fonrnecida no perfil: " + getLocationUser(status) +"\n");
 		    }
 		        
 		}catch (TwitterException e) {
@@ -130,6 +130,14 @@ public static void main(String[] args) throws TwitterException {
 	public static void printMentions(ArrayList<String> mentions){
 		for(String mention : mentions){
 			System.out.println(mention);
+		}
+	}
+	
+	public static String getLocationUser(Status status){
+		if (status.getUser().getLocation().isEmpty()){
+			return "localização não fornecida no cadastro do usuário.";
+		} else{
+			return status.getUser().getLocation();
 		}
 	}
 	
