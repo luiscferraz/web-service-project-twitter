@@ -63,7 +63,7 @@ public static void main(String[] args) throws TwitterException {
 		    QueryResult result = twitter.search(query);
 		    for (Status status : result.getTweets()) {
 		        //System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-		        tweets.add("@" + status.getUser().getScreenName() + ":" + status.getText() + "\nLocalização do usuário fonrnecida no perfil: " + getLocationUser(status) +"\n");
+		        tweets.add("@" + status.getUser().getScreenName() + ":" + status.getText() + "\nLocalização do usuário fornecida no perfil: " + getLocationUser(status) +"\n");
 		    }
 		        
 		}catch (TwitterException e) {
